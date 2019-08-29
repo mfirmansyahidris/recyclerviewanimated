@@ -14,7 +14,7 @@ created by -manca-
  ****************************************
  */
 
-class Adapter(private val context: Context, private val dataSet: MutableList<String>, private val listener: (String) -> Unit)
+class Adapter(private val context: Context, private val dataSet: MutableList<String>, private val listener: (Int) -> Unit)
     : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,10 +49,10 @@ class Adapter(private val context: Context, private val dataSet: MutableList<Str
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var text: TextView = itemView.findViewById<View>(R.id.text) as TextView
 
-        fun bindItem(items: String, listener: (String) -> Unit) {
+        fun bindItem(items: String, listener: (Int) -> Unit) {
             text.text = items
             itemView.setOnClickListener {
-                listener(items)
+                listener(adapterPosition)
             }
         }
     }
